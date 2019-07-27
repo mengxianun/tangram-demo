@@ -1,0 +1,10 @@
+{
+  "datasources":{
+    "test":{
+      "url":"jdbc:h2:mem:test;INIT=runscript from 'classpath:db/schema.sql'\\;runscript from 'classpath:db/data.sql';",
+      "username":"test",
+      "password":"",
+      "filters": "stat,wall"
+    }
+  }
+}
