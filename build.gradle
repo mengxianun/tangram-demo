@@ -17,6 +17,7 @@ configurations {
 }
 
 repositories {
+  mavenLocal()
 	mavenCentral()
 }
 
@@ -25,5 +26,5 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	implementation 'com.alibaba:druid'
-	implementation 'com.github.mengxianun:tangram-all:1.6.0'
+	implementation 'com.github.mengxianun:tangram-all:1.6.1-SNAPSHOT'
 }
