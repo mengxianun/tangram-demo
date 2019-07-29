@@ -16,6 +16,9 @@
     ul {
 		  list-style-type: none;
 		}
+		.row+.row {
+      margin-top: 1rem;
+    }
   </style>
 
 </head>
@@ -53,11 +56,11 @@
   <!-- Page Content -->
   <div class="container" id="app">
 
-    <h1 class="my-4">Test Tables</h1>
+    <h1 class="my-4">Tables</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
-      <div class="col-lg-3 mb-4" v-for="table in tables">
+      <div class="col-sm-3 mb-4" v-for="table in tables">
         <div class="card h-100">
           <h5 class="card-header">{{ table.name }}</h5>
           <div class="card-body">
@@ -74,9 +77,37 @@
       </div>
     </div>
     <!-- /.row -->
+    
+    <h1 class="my-4">Test</h1>
+    
+    <!-- Features Section -->
+    <div class="row">
+      <div class="col-lg-6">
+        <label>Input</label>
+        <button type="button" class="btn btn-success btn-sm" v-on:click="run">Run</button>
+        <textarea class="form-control" rows="10" v-model="input" placeholder="Request json"></textarea>
+      </div>
+      <div class="col-lg-6">
+			  <label>Output</label>
+			  <textarea class="form-control" rows="10"  v-model="output"></textarea>
+      </div>
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+	    <div class="col">
+	      <div class="alert alert-danger" role="alert" v-if="message">
+	        {{ message }}
+	      </div>
+	    </div>
+	  </div>
 
   </div>
   <!-- /.container -->
+  
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017-2019 Aigodata</p>
+  </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
@@ -88,7 +119,10 @@
 	  var app = new Vue({
 		  el: '#app',
 		  data: {
-			  tables: []
+			  tables: [],
+			  input: "",
+			  output: "",
+			  message: ""
 		  },
 		  methods: {
 		    getTables: function (event) {
@@ -99,6 +133,18 @@
 		    	  .then(function (response) {
 		    		  _this.tables = response.data.tables;
 		    	  });
+		    },
+		    run: function (event) {
+		    	this.output = "";
+		    	this.message = "";
+		    	var _this = this;
+		    	axios.post('/action', JSON.parse(this.input))
+            .then(function (response) {
+              _this.output = JSON.stringify(response.data, null, 2);
+            })
+            .catch(function (error) {
+            	_this.message = error.response.data.message;
+					  });
 		    }
 		  },
 		  mounted: function () {
