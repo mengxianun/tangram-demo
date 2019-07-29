@@ -85,6 +85,7 @@
       <div class="col-lg-6">
         <label>Input</label>
         <button type="button" class="btn btn-success btn-sm" v-on:click="run">Run</button>
+        <button type="button" class="btn btn-success btn-sm" v-on:click="reset">Reset</button>
         <textarea class="form-control" rows="10" v-model="input" placeholder="Request json"></textarea>
       </div>
       <div class="col-lg-6">
@@ -145,6 +146,9 @@
             .catch(function (error) {
             	_this.message = error.response.data.message;
 					  });
+		    },
+		    reset: function (event) {
+		    	axios.post('/reset');
 		    }
 		  },
 		  mounted: function () {
