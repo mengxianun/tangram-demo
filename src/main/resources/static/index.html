@@ -87,7 +87,7 @@
 				  <label class="my-1 mr-2">Input</label>
 				  <button type="button" class="btn btn-success btn-sm mr-2" v-on:click="run">Run</button>
 				  <select class="custom-select-sm mr-2" v-model="example">
-				    <option disabled selected>Examples...</option>
+				    <option disabled selected value="">Examples...</option>
 				    <option v-for="(content, title) in examples" v-bind:value="title">
 						  {{ title }}
 						</option>
