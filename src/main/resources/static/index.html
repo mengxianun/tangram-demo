@@ -83,9 +83,17 @@
     <!-- Features Section -->
     <div class="row">
       <div class="col-lg-6">
-        <label>Input</label>
-        <button type="button" class="btn btn-success btn-sm" v-on:click="run">Run</button>
-        <button type="button" class="btn btn-success btn-sm" v-on:click="reset">Reset</button>
+        <form class="form-inline">
+				  <label class="my-1 mr-2">Input</label>
+				  <button type="button" class="btn btn-success btn-sm mr-2" v-on:click="run">Run</button>
+				  <select class="custom-select-sm mr-2" v-model="example">
+				    <option disabled selected>Examples...</option>
+				    <option v-for="(content, title) in examples" v-bind:value="title">
+						  {{ title }}
+						</option>
+				  </select>
+					<button type="button" class="btn btn-success btn-sm float-right" v-on:click="reset">Data Reset</button>
+				</form>
         <textarea class="form-control" rows="10" v-model="input" placeholder="Request json"></textarea>
       </div>
       <div class="col-lg-6">
@@ -121,9 +129,16 @@
 		  el: '#app',
 		  data: {
 			  tables: [],
-			  input: "",
-			  output: "",
-			  message: ""
+			  examples: {},
+			  example: '',
+			  input: '',
+			  output: '',
+			  message: ''
+		  },
+		  watch: {
+			  example: function (val) {
+		      this.input = this.examples[this.example]
+		    }
 		  },
 		  methods: {
 		    getTables: function (event) {
@@ -135,9 +150,16 @@
 		    		  _this.tables = response.data.tables;
 		    	  });
 		    },
+		    getExamples: function (event) {
+          fetch('/examples')
+            .then(response => response.json())
+            .then(data => {
+              this.examples = data;
+            });
+        },
 		    run: function (event) {
-		    	this.output = "";
-		    	this.message = "";
+		    	this.output = ''
+		    	this.message = ''
 		    	var _this = this;
 		    	axios.post('/action', JSON.parse(this.input))
             .then(function (response) {
@@ -154,6 +176,7 @@
 		  mounted: function () {
 			  this.$nextTick(function () {
 				  this.getTables()
+				  this.getExamples()
 			  })
 			}
 		})

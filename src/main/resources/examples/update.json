@@ -1,0 +1,14 @@
+{
+  "update": "user",
+  "values": {
+    "name": "update-test",
+    "username": "update-test",
+    "password": "1234",
+    "weight": 66.5,
+    "create_time": "2019-01-01 00:00:00",
+    "birth": "2000-01-01",
+    "sex": 1,
+    "xxx": "xxx"
+  },
+  "where": "id=1"
+}

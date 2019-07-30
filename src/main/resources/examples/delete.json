@@ -1,0 +1,4 @@
+{
+  "delete":"user",
+  "where":"id=1"
+}

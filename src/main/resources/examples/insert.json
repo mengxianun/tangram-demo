@@ -1,0 +1,14 @@
+{
+  "insert": "user",
+  "values": {
+    "name": "insert-name",
+    "username": "insert-name",
+    "password": "1234",
+    "weight": 50,
+    "create_time": "2019-01-01 00:00:00",
+    "birth": "2000-01-01",
+    "sex": 2,
+    "xxx": "xxx"
+  },
+  "where":"id=1"
+}

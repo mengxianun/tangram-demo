@@ -1,0 +1,4 @@
+{
+  "select":"user",
+  "where":["name%=Ka%", "id=1", {"or":["weight<100"]}]
+}

@@ -1,0 +1,5 @@
+{
+  "select":"user",
+  "fields":["sex", "count(*) as num"],
+  "group":["sex"]
+}

@@ -1,0 +1,25 @@
+{
+  "transaction": [{
+      "select": "user",
+      "where": "id=1"
+    },
+    {
+      "insert": "role",
+      "values": {
+        "name": "transaction-insert-name",
+        "desc": "transaction-insert-name"
+      }
+    },
+    {
+      "update": "user",
+      "values": {
+        "name": "transaction-update-name",
+        "username": "transaction-update-name",
+        "password": "1234",
+        "weight": 100,
+        "create_time": "2001-01-01 00:00:00"
+      },
+      "where": "id=1"
+    }
+  ]
+}

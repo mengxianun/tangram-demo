@@ -1,0 +1,6 @@
+{
+  "select": "user",
+  "join": ["role", "hobby"],
+  "where": "role.id=1,2",
+  "limit": [0, 2]
+}
