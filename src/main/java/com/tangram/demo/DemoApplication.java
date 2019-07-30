@@ -61,19 +61,14 @@ public class DemoApplication {
 	}
 
 	@PostMapping("/reset")
-	public void reset() {
+	public void reset() throws SQLException {
 		String url = "jdbc:h2:mem:test";
 		String username = "test";
 		String password = "";
-		try {
-			String schemaPath = Resources.getResource("db/schema.sql").getPath();
-			String dataPath = Resources.getResource("db/data.sql").getPath();
-			RunScript.execute(url, username, password, schemaPath, StandardCharsets.UTF_8, false);
-			RunScript.execute(url, username, password, dataPath, StandardCharsets.UTF_8, false);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String schemaPath = Resources.getResource("db/schema.sql").getPath();
+		String dataPath = Resources.getResource("db/data.sql").getPath();
+		RunScript.execute(url, username, password, schemaPath, StandardCharsets.UTF_8, false);
+		RunScript.execute(url, username, password, dataPath, StandardCharsets.UTF_8, false);
 	}
 
 }
